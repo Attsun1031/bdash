@@ -13,6 +13,7 @@ import "codemirror/addon/dialog/dialog.css";
 import "codemirror/addon/hint/show-hint.css";
 import { isEqual } from "lodash";
 import { clipboard } from "electron";
+import { SQLAutocomplete, SQLDialect, Schema, Table, Column } from "sql-autocomplete";
 
 type Props = {
   readonly options: CodeMirror.EditorConfiguration;
@@ -24,6 +25,12 @@ type Props = {
   readonly onChange: (change: string, codeMirrorHistory: Record<string, unknown>) => void;
   readonly onChangeCursor: (lineNumber: number) => void;
 };
+
+const sqlAutocomplete = new SQLAutocomplete(SQLDialect.BigQuery, [
+  new Schema("sch1", [new Table("tbl1", [new Column("colA")]), new Table("tbl1-A", [new Column("cola")])]),
+  new Schema("sch2", [new Table("tbl2", [new Column("colB")])]),
+  new Schema("ssch3", [new Table("tbl2", [new Column("colB")])])
+]); // Optional
 
 export default class Editor extends React.Component<Props> {
   codeMirror: CodeMirror.EditorFromTextArea;
@@ -155,15 +162,32 @@ export default class Editor extends React.Component<Props> {
       const cursor = editor.getCursor();
       const token = editor.getTokenAt(cursor);
       const tokenString = token.string;
+      if (tokenString.length < 2) {
+        return;
+      }
       CodeMirror.showHint(editor, undefined, {
-        hint: (): CodeMirror.Hints => {
+        hint: (cm: CodeMirror.Editor): CodeMirror.Hints => {
+          // Determine current char position.
+          const currentEditorValue = cm.getValue();
+          let currentPos = 0;
+          for (const [lineNum, lineValue] of currentEditorValue.split(/\r?\n/).entries()) {
+            if (lineNum === cursor.line) {
+              currentPos += cursor.ch;
+              break;
+            } else {
+              // +1 is newline char
+              currentPos += lineValue.length + 1;
+            }
+          }
+          console.log(currentEditorValue.charAt(currentPos));
+
+          // Get completion candidates
+          const completions = sqlAutocomplete.autocomplete(currentEditorValue, currentPos);
+          const words = completions.map(v => v.value).filter(v => v !== null);
           return {
             from: CodeMirror.Pos(cursor.line, token.start),
             to: CodeMirror.Pos(cursor.line, token.end),
-            list:
-              tokenString.length === 0
-                ? []
-                : this.props.tables.filter(t => t.length > tokenString.length && t.startsWith(tokenString))
+            list: words
           };
         },
         completeSingle: false

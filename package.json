@@ -50,6 +50,7 @@
     "react-modal": "3.1.10",
     "react-select": "~3.0.8",
     "react-splitter-layout": "4.0.0",
+    "sql-autocomplete": "https://github.com/Attsun1031/sql-autocomplete.git#v1.2.4",
     "sqlite3": "^5.0.2",
     "td": "0.3.0"
   },

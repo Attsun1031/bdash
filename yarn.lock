@@ -956,6 +956,24 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
     "@types/color-name" "^1.1.1"
     color-convert "^2.0.1"
 
+antlr4-c3@^1.1.15:
+  version "1.1.16"
+  resolved "https://registry.yarnpkg.com/antlr4-c3/-/antlr4-c3-1.1.16.tgz#5331ce33016f5643e225d660b8884b69c7fbbc49"
+  integrity sha512-3CZQ54JPyo6lkZYDOXaKUsy5KNFucveocvRy+03R7zJQbYOUr4Z6lFeBWzkxJXLitc7yQYe7OHbB6snyp7IJvQ==
+  dependencies:
+    antlr4ts "^0.5.0-alpha.3"
+
+antlr4ts-sql@Attsun1031/antlr4ts-sql#v1.2.2:
+  version "1.2.2"
+  resolved "https://codeload.github.com/Attsun1031/antlr4ts-sql/tar.gz/bc0cbfe58b3f5a457a0ce9eaa201b577cecc3a42"
+  dependencies:
+    antlr4ts "^0.5.0-alpha.4"
+
+antlr4ts@^0.5.0-alpha.3, antlr4ts@^0.5.0-alpha.4:
+  version "0.5.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/antlr4ts/-/antlr4ts-0.5.0-alpha.4.tgz#71702865a87478ed0b40c0709f422cf14d51652a"
+  integrity sha512-WPQDt1B74OfPv/IMS2ekXAKkTZIHl88uMetg6q3OTqgFxZ/dxDXI0EWLyZid/1Pe6hTftyg5N7gel5wNAGxXyQ==
+
 anymatch@~3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/anymatch/-/anymatch-3.1.1.tgz#c55ecf02185e2469259399310c173ce31233b142"
@@ -5846,6 +5864,13 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
+
+"sql-autocomplete@https://github.com/Attsun1031/sql-autocomplete.git#v1.2.4":
+  version "1.2.4"
+  resolved "https://github.com/Attsun1031/sql-autocomplete.git#886cc742a48dbffa6fc35faabcd98207ace66d26"
+  dependencies:
+    antlr4-c3 "^1.1.15"
+    antlr4ts-sql Attsun1031/antlr4ts-sql#v1.2.2
 
 sqlite3@^5.0.2:
   version "5.0.2"
