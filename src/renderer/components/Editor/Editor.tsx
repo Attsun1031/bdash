@@ -179,7 +179,6 @@ export default class Editor extends React.Component<Props> {
               currentPos += lineValue.length + 1;
             }
           }
-          console.log(currentEditorValue.charAt(currentPos));
 
           // Get completion candidates
           const completions = sqlAutocomplete.autocomplete(currentEditorValue, currentPos);
