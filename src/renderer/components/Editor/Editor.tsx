@@ -11,9 +11,10 @@ import "codemirror/mode/sql/sql";
 import "codemirror/lib/codemirror.css";
 import "codemirror/addon/dialog/dialog.css";
 import "codemirror/addon/hint/show-hint.css";
+import "../../../lib/CodeMirrorAddon";
 import { isEqual } from "lodash";
 import { clipboard } from "electron";
-import { SQLAutocomplete, SQLDialect, Schema, Table, Column } from "sql-autocomplete";
+import { SQLAutocomplete, SQLDialect, Project, Schema, Table, Column, BigQueryProjects } from "sql-autocomplete";
 
 type Props = {
   readonly options: CodeMirror.EditorConfiguration;
@@ -26,11 +27,19 @@ type Props = {
   readonly onChangeCursor: (lineNumber: number) => void;
 };
 
-const sqlAutocomplete = new SQLAutocomplete(SQLDialect.BigQuery, [
-  new Schema("sch1", [new Table("tbl1", [new Column("colA")]), new Table("tbl1-A", [new Column("cola")])]),
-  new Schema("sch2", [new Table("tbl2", [new Column("colB")])]),
-  new Schema("ssch3", [new Table("tbl2", [new Column("colB")])])
-]); // Optional
+const sqlAutocomplete = new SQLAutocomplete(
+  SQLDialect.BigQuery,
+  new BigQueryProjects(
+    [
+      new Project("my-project", [
+        new Schema("sch1", [new Table("tbl1", [new Column("colA")]), new Table("tbl1-A", [new Column("cola")])]),
+        new Schema("sch2", [new Table("tbl2", [new Column("colB")])]),
+        new Schema("ssch3", [new Table("tbl2", [new Column("colB")])])
+      ])
+    ],
+    "my-project"
+  )
+);
 
 export default class Editor extends React.Component<Props> {
   codeMirror: CodeMirror.EditorFromTextArea;

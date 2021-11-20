@@ -963,9 +963,9 @@ antlr4-c3@^1.1.15:
   dependencies:
     antlr4ts "^0.5.0-alpha.3"
 
-antlr4ts-sql@Attsun1031/antlr4ts-sql#v1.2.2:
+"antlr4ts-sql@https://github.com/Attsun1031/antlr4ts-sql.git#v2.0.0":
   version "1.2.2"
-  resolved "https://codeload.github.com/Attsun1031/antlr4ts-sql/tar.gz/bc0cbfe58b3f5a457a0ce9eaa201b577cecc3a42"
+  resolved "https://github.com/Attsun1031/antlr4ts-sql.git#2199e59c1ed7854ebfd914beca4a3fdfa4303c18"
   dependencies:
     antlr4ts "^0.5.0-alpha.4"
 
@@ -5865,12 +5865,12 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-"sql-autocomplete@https://github.com/Attsun1031/sql-autocomplete.git#v1.2.4":
+"sql-autocomplete@https://github.com/Attsun1031/sql-autocomplete.git#v2.0.1":
   version "1.2.4"
-  resolved "https://github.com/Attsun1031/sql-autocomplete.git#886cc742a48dbffa6fc35faabcd98207ace66d26"
+  resolved "https://github.com/Attsun1031/sql-autocomplete.git#481acd797100bfbc77ef0340ad45f40f6dc852df"
   dependencies:
     antlr4-c3 "^1.1.15"
-    antlr4ts-sql Attsun1031/antlr4ts-sql#v1.2.2
+    antlr4ts-sql "https://github.com/Attsun1031/antlr4ts-sql.git#v2.0.0"
 
 sqlite3@^5.0.2:
   version "5.0.2"
